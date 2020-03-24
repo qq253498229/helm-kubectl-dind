@@ -18,6 +18,7 @@ RUN apk add --update ca-certificates \
 && apk add --update -t deps curl  \
 && apk add --update gettext tar gzip \
 && curl -L https://docs.rancher.cn/download/kubernetes/linux-amd64-${KUBE_LATEST_VERSION}-kubectl -o /usr/local/bin/kubectl \
+&& chmod +x /usr/local/bin/kubectl \
 && curl -L https://docs.rancher.cn/download/helm/${HELM_FILENAME} | tar xz && mv linux-amd64/helm /bin/helm && rm -rf linux-amd64 \
 && apk del --purge deps \
 && rm /var/cache/apk/*
