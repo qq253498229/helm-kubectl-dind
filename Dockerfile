@@ -4,6 +4,12 @@ MAINTAINER 王斌 <253498229@qq.com>
 
 # https://docs.rancher.cn/rancher2x/install-prepare/download/ 查看最近版本
 
+ENV TZ=Asia/Shanghai
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+    && apk add tzdata \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo $TZ > /etc/timezone
+
 ENV KUBE_LATEST_VERSION=v1.17.4
 ENV HELM_VERSION=v3.0.3
 ENV HELM_FILENAME=helm-${HELM_VERSION}-linux-amd64.tar.gz
